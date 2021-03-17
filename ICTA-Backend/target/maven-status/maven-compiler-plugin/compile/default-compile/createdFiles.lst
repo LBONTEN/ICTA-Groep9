@@ -1,0 +1,8 @@
+com/example/restservice/Person.class
+com/example/restservice/Greeting.class
+com/example/restservice/RestServiceApplication.class
+com/example/restservice/HomeController.class
+com/example/restservice/DatabaseLoader.class
+com/example/restservice/GreetingController.class
+com/example/restservice/DemoController.class
+com/example/restservice/PersonRepository.class
