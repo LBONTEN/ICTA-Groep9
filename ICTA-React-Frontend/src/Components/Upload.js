@@ -64,8 +64,8 @@ export default class Upload extends Component {
         return(
             <div>
                 <form>
-                    <div class="field">
-                        <label for="file" >File: </label>
+                    <div className="field">
+                        <label htmlFor="file" >File: </label>
                         <input type="file" name="file" id="fileinput"/>
                     </div>
                     <input type="button" value="Upload" onClick={this.uploadFile} />

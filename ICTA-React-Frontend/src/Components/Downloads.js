@@ -28,8 +28,8 @@ export default class Downloads extends Component {
         return (
         <div>
             <form>
-                <div class="field">
-                    <label for="uuid" >UUID: </label>
+                <div className="field">
+                    <label htmlFor="uuid" >UUID: </label>
                     <input type="text" name="uuid" id="uuid-input"/>
                 </div>
                 <input type="button" value="Download" onClick={async() => {await this.generatePresignedURL();}} />
