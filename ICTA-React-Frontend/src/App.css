@@ -104,3 +104,14 @@ nav .login button {
   height: 10%;
 }
 
+#welcome {
+  align-self: center;
+  text-align: center;
+  padding: 10px 10px 0px 10px;
+  background-color: inherit;
+  color: inherit;
+  border-color: transparent;
+  border-right: 1px solid lightgrey;
+  height: 80%;
+  width: 31rem;
+}

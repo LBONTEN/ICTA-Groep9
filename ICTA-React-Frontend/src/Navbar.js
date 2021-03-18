@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Navbar = () => {
-    const { logout } = useAuth0();
+    const { logout, user } = useAuth0();
     return(
       <nav>   
         <div className="brand">
@@ -15,6 +15,9 @@ const Navbar = () => {
         <Link to={'/download'}>
           <button>Download</button>
         </Link>
+        <div id="welcome">
+          Welcome {user.name}
+        </div>
         <div className="login">
           <button onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
         </div>
