@@ -1,0 +1,42 @@
+form {
+    max-width: 500px;
+}
+
+.field {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    margin: 4rem auto 1rem;
+}
+
+label {
+    color: var(--text-secondary);
+}
+
+input:not(input[type="file"]) {
+    background: none;
+    border: 3px solid darkcyan;
+    border-radius: 5px;
+    min-width: 15%;
+    color: darkcyan;
+    padding: 10px;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+input[type="file"] {
+    outline: none;
+    border: none;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem 0;
+    background: none;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+input:not(input[type="file"]):hover {
+    cursor: pointer;
+    background-color: var(--bg-secondary);
+}

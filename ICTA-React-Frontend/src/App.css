@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+:root {
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #0F171C;
+  --bg-secondary: #141418;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #22343C;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+main {
+  padding-left: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0px;
+  display: block;
+  height: 100%;
+}
+
+li {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px 0px 5px 0px;
+  width: 20%;
+  list-style: none;
+}
+
+li:hover {
+  background-color: var(--bg-secondary);
+}
+
+nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-flow: row;
+  background-color: var(--bg-primary);
+  height: 3rem;
 }
 
-.App-link {
-  color: #61dafb;
+nav button {
+  text-align: -webkit-center;
+  background-color: inherit;
+  color: inherit;
+  border-color: transparent;
+  border-right: 1px solid lightgrey;
+  height: 100%;
+  width: 6rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav button:hover {
+  background-color: var(--bg-secondary);
 }
+
+nav button:focus {
+  outline: none;
+}
+
+nav .login {
+  display: flex;
+  margin-left: auto;
+}
+
+nav .login button {
+  border-left: 1px solid lightgrey;
+}
+
+.brand {
+  min-height: 100%;
+  padding: 0px 10px 0px 10px;
+  background-color: darkcyan;
+  text-align: center;
+  display: inline;
+}
+
+.brand h1 {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+.App-login button{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+
+  text-align: -webkit-center;
+  background-color: inherit;
+  color: aqua;
+  border-color: transparent;
+  border: 3px solid aqua;
+  border-radius: 5px;
+  width: 20%;
+  height: 10%;
+}
+

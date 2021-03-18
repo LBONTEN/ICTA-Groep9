@@ -1,7 +1,11 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import Downloads from './Components/Downloads';
+import Upload from './Components/Upload';
 import { useAuth0 } from '@auth0/auth0-react';
+import './App.css';
 
-function App() {
+export default function App() {
 
   const {
     isLoading,
@@ -9,6 +13,7 @@ function App() {
     error,
     loginWithRedirect,
     logout,
+    getAccessTokenSilently,
   } = useAuth0();
 
 
@@ -19,21 +24,39 @@ function App() {
     return <div>Oops... {error.message}</div>;
   
 
-  if (isAuthenticated)
+  if (isAuthenticated) {
     return (
       <div className="App">
-        <button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log out
-        </button>
+        <BrowserRouter>
+          <nav>
+            <div class="brand">
+              <h1>Text App</h1>
+            </div>
+            <Link to={'/upload'}>
+              <button>Upload</button>
+            </Link>
+            <Link to={'/download'}>
+              <button>Download</button>
+            </Link>
+            <div class="login">
+              <button onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
+            </div>
+          </nav>
+          <main>
+            <Switch>
+              <Route exact path="/upload" component={Upload}></Route>
+              <Route exact path="/download" component={Downloads}></Route>
+              <Route path="/*" component={Downloads}></Route>
+            </Switch>
+          </main>
+        </BrowserRouter>
       </div>
     );
-    else
-      return (
-        <div class="App">
-          <button onClick={loginWithRedirect}>Log in</button>
-        </div>
-      )
-
+  } else {
+    return (
+      <div class="App App-login">
+        <button onClick={loginWithRedirect}>Log in</button>
+      </div>
+    )
+  }
 }
-
-export default App;
