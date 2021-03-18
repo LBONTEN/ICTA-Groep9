@@ -13,7 +13,6 @@ export default function App() {
     error,
     loginWithRedirect,
     logout,
-    getAccessTokenSilently,
   } = useAuth0();
 
 

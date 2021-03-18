@@ -49,10 +49,10 @@ export default class Upload extends Component {
         return(
         <form action="/download" onSubmit={this.uploadFile}>
             <div class="field">
-                <label for="file">File: </label>
+                <label for="file" id="fileinput">File: </label>
                 <input type="file" name="file"/>
             </div>
-            <input type="submit" value="Upload" id="fileinput"/>
+            <input type="submit" value="Upload" />
             <input type="reset" value="Reset the file"/>
         </form>
         );
