@@ -1,19 +1,11 @@
 import React, {Component} from 'react';
-import { nanoid } from 'nanoid';
-import DownloadCard from './DownloadCard';
 
 export default class Downloads extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            downloads: [],
             presigned_download_url: null,
         };
-    }
-
-    componentDidMount() {
-        this.setState({downloads: [{"name":"test1"},{"name":"test2"}]});
-        console.log(this.state.downloads);
     }
 
     async generatePresignedURL() {
@@ -23,12 +15,28 @@ export default class Downloads extends Component {
         const data = await response.json();
         console.log(data);
         this.setState({ presigned_download_url: data.URL })
-        
     } 
 
     render() {
-        return this.state.downloads.map((item) => {
-            return <DownloadCard name={item.name} key={nanoid()}/>
-        });
+        let url;
+        if(this.state.presigned_download_url != null) {
+            url = 
+            <div>
+                <a href={this.state.presigned_download_url}>Download</a>
+            </div>
+        }
+        return (
+        <div>
+            <form>
+                <div class="field">
+                    <label for="uuid" >UUID: </label>
+                    <input type="text" name="uuid" id="uuid-input"/>
+                </div>
+                <input type="button" value="Download" onClick={async() => {await this.generatePresignedURL();}} />
+                <input type="reset" value="Reset the text"/>
+            </form>
+            {url}
+        </div>
+        );
     }
 }

@@ -6,6 +6,7 @@ export default class Upload extends Component {
         super(props);
         this.state= {
             base_url: null,
+            showUrl: false,
         };
     }
 
@@ -42,19 +43,36 @@ export default class Upload extends Component {
         console.log("upload file pressed...");
         const fileinput = document.getElementById('fileinput');
         let file = fileinput.files[0];
-        this.post_get_Handler(file);
+        if(!(file === undefined)) {
+            this.setState({showUrl: true})
+            this.post_get_Handler(file);
+        } else {
+            this.setState({showUrl: false})
+        }
+        
     }
 
     render() {
+        let url;
+        if(this.state.showUrl)
+        {
+        url = 
+        <div>
+            <p>{this.state.base_url}</p>
+        </div>
+        }
         return(
-        <form>
-            <div class="field">
-                <label for="file" >File: </label>
-                <input type="file" name="file" id="fileinput"/>
-            </div>
-            <input type="button" value="Upload" onClick={this.uploadFile} />
-            <input type="reset" value="Reset the file"/>
-        </form>
+            <div>
+                <form>
+                    <div class="field">
+                        <label for="file" >File: </label>
+                        <input type="file" name="file" id="fileinput"/>
+                    </div>
+                    <input type="button" value="Upload" onClick={this.uploadFile} />
+                    <input type="reset" value="Reset the file"/>
+                </form>
+                {url}
+        </div>
         );
     }
 }
