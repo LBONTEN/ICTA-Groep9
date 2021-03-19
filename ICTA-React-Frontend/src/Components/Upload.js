@@ -23,7 +23,7 @@ export default class Upload extends Component {
             const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${filename}`);
             const data = await response.json();
             
-            this.setState({ base_url: data.URL.url + data.URL.fields.key })
+            this.setState({ base_url: data.URL.fields.key })
 
             // POST
             let form = new FormData();
@@ -35,7 +35,7 @@ export default class Upload extends Component {
             if (!post_response.ok) {
                 console.log('Failed to upload via presigned POST');
             }
-            console.log(`File uploaded via presigned POST with key: ${data.URL.key}`);
+            console.log(`File uploaded via presigned POST with key: ${data.URL.fields.key}`);
         }
     }
 
@@ -52,13 +52,36 @@ export default class Upload extends Component {
         
     }
 
+    copyText() {
+        var element = document.getElementById("key");
+        document.execCommand("copy");
+
+        element.addEventListener("copy", function(event) {
+            event.preventDefault();
+            if(event.clipboardData) {
+                event.clipboardData.setData("text/plain", element.textContent);
+            }
+        })
+
+        let tooltip = document.getElementById("copyTooltip");
+        tooltip.innerHTML = 'Copied to clipboard'
+    }
+
+    changeToolTip() {
+        let tooltip = document.getElementById("copyTooltip");
+        tooltip.innerHTML = "Copy to clipboard";
+    }
+
     render() {
         let url;
         if(this.state.showUrl)
         {
         url = 
-        <div>
-            <p>{this.state.base_url}</p>
+        <div class="tooltip">
+            <h1 onClick={this.copyText} onMouseOut={this.changeToolTip} id="key">
+                <span class="tooltipText" id="copyTooltip">Copy to clipboard</span>
+                {this.state.base_url}
+            </h1>
         </div>
         }
         return(

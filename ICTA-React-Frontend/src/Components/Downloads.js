@@ -13,7 +13,6 @@ export default class Downloads extends Component {
 
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}`);
         const data = await response.json();
-        console.log(data);
         this.setState({ presigned_download_url: data.URL })
     } 
 
@@ -21,9 +20,7 @@ export default class Downloads extends Component {
         let url;
         if(this.state.presigned_download_url != null) {
             url = 
-            <div>
-                <a href={this.state.presigned_download_url}>Download</a>
-            </div>
+            <a href={this.state.presigned_download_url}>Download</a>
         }
         return (
         <div>

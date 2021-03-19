@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import Navbar from './Navbar';
-import Routes from './Routes';
+import Navbar from './Components/Navbar';
+import Routes from './Components/Routes';
 import './App.css';
 
 export default function App() {

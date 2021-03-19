@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom';
-import Downloads from './Components/Downloads';
-import Upload from './Components/Upload';
+import Downloads from './Downloads';
+import Upload from './Upload';
 
 const Routes = () => {
     return (
