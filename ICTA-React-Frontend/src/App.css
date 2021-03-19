@@ -119,28 +119,32 @@ label {
 }
 
 /*Form input styling*/
-input[type="text"] {
-  border: 3px solid darkcyan;
-  border-radius: 5px;
-  padding: 10px;
-}
-
 input[type="file"] {
-  padding: 0.25rem 0;
-  border: none;
+  display: none;
 }
 
-input[type="text"], input[type="file"] {
+.file-input {
+  display: block;
+  color: darkcyan;
+}
+
+input[type="text"] {
+  color: var(--text-secondary);
+}
+
+.custom-input {
   outline: none;
   overflow: hidden;
   margin: 10px 0 0 0;
   width: 100%;
   background: none;
   font-weight: bold;
-  color: var(--text-secondary);
+  border: 3px solid darkcyan;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-input[type="button"], input[type="reset"] {
+.input-button {
   background: none;
   border: 3px solid darkcyan;
   border-radius: 5px;
@@ -151,7 +155,7 @@ input[type="button"], input[type="reset"] {
   margin-right: 1rem;
 }
 
-input[type="button"]:hover {
+.input-button:hover {
   cursor: pointer;
   background-color: var(--bg-secondary);
 }

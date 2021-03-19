@@ -51,16 +51,15 @@ export default class Upload extends Component {
         
     }
 
-    copyText() {
-        var element = document.getElementById("key");
+    copyText() {  
+        let element = document.getElementById("key");
         document.execCommand("copy");
-
         element.addEventListener("copy", function(event) {
             event.preventDefault();
             if(event.clipboardData) {
                 event.clipboardData.setData("text/plain", element.textContent);
             }
-        })
+        });
 
         let tooltip = document.getElementById("copyTooltip");
         tooltip.innerHTML = 'Copied to clipboard'
@@ -69,6 +68,17 @@ export default class Upload extends Component {
     changeToolTip() {
         let tooltip = document.getElementById("copyTooltip");
         tooltip.innerHTML = "Copy to clipboard";
+    }
+
+    changeChosenFile() {
+        let fileinput = document.getElementById("fileinput");
+        let filelabel = document.getElementById("filelabel");
+        filelabel.innerHTML = `Chosen file: ${fileinput.files[0].name}`;
+    }
+
+    resetFile() {
+        let filelabel = document.getElementById("filelabel");
+        filelabel.innerHTML = "Choose file";
     }
 
     render() {
@@ -87,11 +97,12 @@ export default class Upload extends Component {
             <div>
                 <form>
                     <div className="field">
-                        <label htmlFor="file" >File: </label>
-                        <input type="file" name="file" id="fileinput"/>
+                        <label>File: </label>
+                        <label class="custom-input file-input input-button" for="fileinput" id="filelabel">Choose file</label>
+                        <input type="file" name="file" id="fileinput" onChange={this.changeChosenFile}/>
                     </div>
-                    <input type="button" value="Upload" onClick={this.uploadFile} />
-                    <input type="reset" value="Reset the file"/>
+                    <input type="button" value="Upload" class="input-button" onClick={this.uploadFile} />
+                    <input type="reset" value="Reset the file" class="input-button" onClick={this.resetFile} />
                 </form>
                 {url}
         </div>
