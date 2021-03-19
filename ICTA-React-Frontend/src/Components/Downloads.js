@@ -29,8 +29,8 @@ export default class Downloads extends Component {
                     <label htmlFor="uuid" >UUID: </label>
                     <input type="text" name="uuid" id="uuid-input" class="custom-input"/>
                 </div>
-                <input type="button" value="Download" class="input-button"  onClick={async() => {await this.generatePresignedURL();}} />
-                <input type="reset" value="Reset the text" class="input-button" />
+                <input type="button" value="Download" class="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
+                <input type="reset" value="Reset the text" class="input-button hoverable" />
             </form>
             {url}
         </div>

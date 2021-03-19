@@ -42,11 +42,6 @@ nav button {
   width: 6rem;
 }
 
-nav button:hover {
-  background-color: var(--bg-secondary);
-  cursor: pointer;
-}
-
 nav button:focus {
   outline: none;
 }
@@ -89,6 +84,11 @@ nav .login button {
   border-radius: 5px;
   width: 20%;
   height: 10%;
+}
+
+.hoverable:hover {
+  cursor: pointer;
+  background-color: var(--bg-secondary);
 }
 
 #welcome {
@@ -154,11 +154,6 @@ input[type="text"] {
   padding: 10px;
   font-weight: bold;
   margin-right: 1rem;
-}
-
-.input-button:hover {
-  cursor: pointer;
-  background-color: var(--bg-secondary);
 }
 
 /*Tooltip styling*/

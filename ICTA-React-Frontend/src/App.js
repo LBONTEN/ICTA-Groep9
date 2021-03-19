@@ -33,7 +33,7 @@ export default function App() {
   } else {
     return (
       <div className="App App-login">
-        <button onClick={loginWithRedirect}>Log in</button>
+        <button class="hoverable" onClick={loginWithRedirect}>Log in</button>
       </div>
     )
   }

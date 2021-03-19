@@ -98,11 +98,11 @@ export default class Upload extends Component {
                 <form>
                     <div className="field">
                         <label>File: </label>
-                        <label class="custom-input file-input input-button" for="fileinput" id="filelabel">Choose file</label>
+                        <label class="custom-input file-input input-button hoverable" for="fileinput" id="filelabel">Choose file</label>
                         <input type="file" name="file" id="fileinput" onChange={this.changeChosenFile}/>
                     </div>
-                    <input type="button" value="Upload" class="input-button" onClick={this.uploadFile} />
-                    <input type="reset" value="Reset the file" class="input-button" onClick={this.resetFile} />
+                    <input type="button" value="Upload" class="input-button hoverable" onClick={this.uploadFile} />
+                    <input type="reset" value="Reset the file" class="input-button hoverable" onClick={this.resetFile} />
                 </form>
                 {url}
         </div>

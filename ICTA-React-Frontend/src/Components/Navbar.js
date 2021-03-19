@@ -10,16 +10,16 @@ const Navbar = () => {
           <h1>Text App</h1>
         </div>
         <Link to={'/upload'}>
-          <button>Upload</button>
+          <button class="hoverable">Upload</button>
         </Link>
         <Link to={'/download'}>
-          <button>Download</button>
+          <button class="hoverable">Download</button>
         </Link>
         <div id="welcome">
           Welcome {user.name}
         </div>
         <div className="login">
-          <button onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
+          <button class="hoverable" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
         </div>
       </nav>
     )
