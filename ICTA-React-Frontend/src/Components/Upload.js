@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './Upload.css';
 
 export default class Upload extends Component {    
     constructor(props) {

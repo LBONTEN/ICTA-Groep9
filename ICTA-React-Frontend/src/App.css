@@ -1,6 +1,5 @@
 :root {
   font-size: 16px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #0F171C;
@@ -24,19 +23,6 @@ a {
   margin: 0px;
   display: block;
   height: 100%;
-}
-
-li {
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 5px;
-  margin: 5px 0px 5px 0px;
-  width: 20%;
-  list-style: none;
-}
-
-li:hover {
-  background-color: var(--bg-secondary);
 }
 
 nav {
@@ -114,4 +100,98 @@ nav .login button {
   border-right: 1px solid lightgrey;
   height: 80%;
   width: 31rem;
+}
+
+/*Default form styling*/
+form {
+  max-width: 500px;
+}
+
+.field {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  margin: 4rem auto 1rem;
+}
+
+label {
+  color: var(--text-secondary);
+}
+
+/*Form input styling*/
+input[type="text"] {
+  border: 3px solid darkcyan;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+input[type="file"] {
+  padding: 0.25rem 0;
+  border: none;
+}
+
+input[type="text"], input[type="file"] {
+  outline: none;
+  overflow: hidden;
+  margin: 10px 0 0 0;
+  width: 100%;
+  background: none;
+  font-weight: bold;
+  color: var(--text-secondary);
+}
+
+input[type="button"], input[type="reset"] {
+  background: none;
+  border: 3px solid darkcyan;
+  border-radius: 5px;
+  min-width: 15%;
+  color: darkcyan;
+  padding: 10px;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+input[type="button"]:hover {
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+}
+
+/*Tooltip styling*/
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltipText {
+  visibility: hidden;
+  min-width: 20%;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
 }
