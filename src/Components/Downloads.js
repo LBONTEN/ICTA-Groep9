@@ -21,7 +21,9 @@ export default class Downloads extends Component {
         let url;
         if(this.state.presigned_download_url != null) {
             url = 
-            <a href={this.state.presigned_download_url}>Download</a>
+            <h1>
+                <a href={this.state.presigned_download_url}>Download</a>
+            </h1>
         }
         return (
         <div>

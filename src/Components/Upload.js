@@ -5,7 +5,6 @@ export default class Upload extends Component {
         super(props);
         this.state= {
             base_url: null,
-            showUrl: false,
             user: props.user,
         };
     }
@@ -22,6 +21,7 @@ export default class Upload extends Component {
             // SEND GET
             console.log(this.props.user.user.name);
             console.log({filename})
+            console.log(count)
             const user_name = this.props.user.user.name
             const response = await fetch(
                 `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload
@@ -56,10 +56,9 @@ export default class Upload extends Component {
         const count = document.getElementById('countInput').value;
         let file = fileinput.files[0];
         if(!(file === undefined)) {
-            this.setState({showUrl: true})
             this.post_get_Handler(file, count);
         } else {
-            this.setState({showUrl: false})
+            this.setState({base_url: null})
         }
         
     }
@@ -96,14 +95,14 @@ export default class Upload extends Component {
 
     render() {
         let url;
-        if(this.state.showUrl)
+        if(this.state.base_url != null)
         {
         url = 
-        <div className="tooltip">
-            <h1 onClick={this.copyText} onMouseOut={this.changeToolTip} id="key">
-                <span className="tooltipText" id="copyTooltip">Copy to clipboard</span>
-                {this.state.base_url}
-            </h1>
+        <div class="tooltip">
+            <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
+                <span class="tooltipText" id="copyTooltip">Copy to clipboard</span>
+                <h1 id="key">{this.state.base_url}</h1>
+            </div>
         </div>
         }
         return(
@@ -113,8 +112,10 @@ export default class Upload extends Component {
                         <label>File: </label>
                         <label className="custom-input file-input input-button hoverable" htmlFor="fileinput" id="filelabel">Choose file</label>
                         <input type="file" name="file" id="fileinput" onChange={this.changeChosenFile}/>
+                    </div>
+                    <div className="field">
                         <label htmlFor="count">Count:</label>
-                        <input type="text" name="count" id="countInput"/>
+                        <input type="text" name="count" className="custom-input" id="countInput"/>
                     </div>
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
                     <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
