@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+//import md5 from 'md5'
 
 export default class Downloads extends Component {
     constructor(props) {
@@ -13,6 +14,8 @@ export default class Downloads extends Component {
         console.log(file_uuid)
 
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}`);
+        //const checksum = md5(file_uuid)
+        //console.log(checksum);
         const data = await response.json();
         this.setState({ presigned_download_url: data.URL })
     } 
