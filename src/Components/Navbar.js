@@ -16,7 +16,7 @@ const Navbar = () => {
           <button className="hoverable">Download</button>
         </Link>
         <div id="welcome">
-          Welcome {user.name}
+          <p>Welcome {user.name}</p>
         </div>
         <div className="login">
           <button className="hoverable" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
