@@ -10,13 +10,14 @@ const Navbar = () => {
           <h1>Text App</h1>
         </div>
         <Link to={'/upload'}>
-          <button>Upload</button>
+          <button>Upload...</button>
         </Link>
         <Link to={'/download'}>
           <button>Download</button>
         </Link>
         <div id="welcome">
-          Welcome {user.name}
+          <p>Welcome {user.name}</p>
+          <p>{user.name}</p>
         </div>
         <div className="login">
           <button onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>

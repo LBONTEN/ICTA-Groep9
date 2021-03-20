@@ -12,8 +12,11 @@ export default function App() {
     isAuthenticated,
     error,
     loginWithRedirect,
-    getAccessTokenSilently,
+    user, 
+    //getAccessTokenSilently,
   } = useAuth0();
+
+ 
 
   if (isLoading) 
     return <div>Loading...</div>;
@@ -22,12 +25,14 @@ export default function App() {
     return <div>Oops... {error.message}</div>;
   
   if (isAuthenticated) {
+    // const accessToken = await getAccessTokenSilently();
     return (
       <div className="App">       
         <BrowserRouter>
           <Navbar/>
-          <Routes/>
+          <Routes user={user} />
         </BrowserRouter>
+        {};
       </div>
     );
   } else {
