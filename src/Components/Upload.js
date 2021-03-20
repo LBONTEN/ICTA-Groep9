@@ -20,7 +20,7 @@ export default class Upload extends Component {
         
             // SEND GET
             console.log(this.props.user.user.name);
-            console.log({filename})
+            console.log(filename)
             console.log(count)
             const user_name = this.props.user.user.name
             const response = await fetch(
@@ -81,7 +81,9 @@ export default class Upload extends Component {
     changeChosenFile() {
         let fileinput = document.getElementById("fileinput");
         let filelabel = document.getElementById("filelabel");
-        filelabel.innerHTML = `Chosen file: ${fileinput.files[0].name}`;
+        if(fileinput != undefined){
+            filelabel.innerHTML = `Chosen file: ${fileinput.files[0].name}`;
+        }
     }
 
     resetFile() {
@@ -96,7 +98,7 @@ export default class Upload extends Component {
         url = 
         <div class="tooltip">
             <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
-                <span class="tooltipText" id="copyTooltip">Copy to clipboard</span>
+                <span className="tooltipText" id="copyTooltip">Copy to clipboard</span>
                 <h1 id="key">{this.state.base_url}</h1>
             </div>
         </div>
