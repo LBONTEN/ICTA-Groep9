@@ -10,6 +10,7 @@ export default class Downloads extends Component {
 
     async generatePresignedURL() {
         var file_uuid = document.getElementById('uuid-input').value;
+        console.log(file_uuid)
 
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}`);
         const data = await response.json();
@@ -27,10 +28,10 @@ export default class Downloads extends Component {
             <form>
                 <div className="field">
                     <label htmlFor="uuid" >UUID: </label>
-                    <input type="text" name="uuid" id="uuid-input" class="custom-input"/>
+                    <input type="text" name="uuid" id="uuid-input" className="custom-input"/>
                 </div>
-                <input type="button" value="Download" class="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
-                <input type="reset" value="Reset the text" class="input-button hoverable" />
+                <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
+                <input type="reset" value="Reset the text" className="input-button hoverable" />
             </form>
             {url}
         </div>

@@ -10,7 +10,7 @@ const Navbar = () => {
           <h1>Text App</h1>
         </div>
         <Link to={'/upload'}>
-          <button class="hoverable">Upload</button>
+          <button className="hoverable">Upload</button>
         </Link>
         <Link to={'/download'}>
           <button className="hoverable">Download</button>

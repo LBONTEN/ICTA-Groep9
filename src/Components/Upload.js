@@ -21,13 +21,14 @@ export default class Upload extends Component {
         
             // SEND GET
             console.log(this.props.user.user.name);
-            console.log(count)
+            console.log({filename})
             const user_name = this.props.user.user.name
             const response = await fetch(
                 `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload
                     ?file=${filename}
                     &user=${user_name}
-                    &count=${count}`);
+                    &count=${count}
+                `);
 
             const data = await response.json();
             
