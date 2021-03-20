@@ -31,7 +31,7 @@ export default class Upload extends Component {
 
             const data = await response.json();
             
-            this.setState({ base_url: data.URL.url + data.URL.fields.key })
+            this.setState({ base_url: data.URL.fields.key })
 
             // POST
             let form = new FormData();
@@ -116,7 +116,7 @@ export default class Upload extends Component {
                         <input type="text" name="count" id="countInput"/>
                     </div>
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
-                    <input type="reset" value="Reset the file" clasName="input-button hoverable" onClick={this.resetFile} />
+                    <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
                 </form>
                 {url}
         </div>

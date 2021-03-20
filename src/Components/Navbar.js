@@ -13,13 +13,13 @@ const Navbar = () => {
           <button class="hoverable">Upload</button>
         </Link>
         <Link to={'/download'}>
-          <button class="hoverable">Download</button>
+          <button className="hoverable">Download</button>
         </Link>
         <div id="welcome">
           Welcome {user.name}
         </div>
         <div className="login">
-          <button class="hoverable" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
+          <button className="hoverable" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
         </div>
       </nav>
     )
