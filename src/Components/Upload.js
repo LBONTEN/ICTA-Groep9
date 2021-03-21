@@ -54,7 +54,6 @@ export default class Upload extends Component {
 
     copyText() {  
         let element = document.getElementById("key");
-        document.execCommand("copy");
         element.addEventListener("copy", function(event) {
             event.preventDefault();
             if(event.clipboardData) {
@@ -62,6 +61,7 @@ export default class Upload extends Component {
             }
         });
 
+        document.execCommand("copy");
         let tooltip = document.getElementById("copyTooltip");
         tooltip.innerHTML = 'Copied to clipboard'
     }
@@ -92,6 +92,7 @@ export default class Upload extends Component {
         <div className="tooltip">
             <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
                 <span className="tooltipText" id="copyTooltip">Copy to clipboard</span>
+                <h1>Make sure to copy this link!</h1>
                 <h1 id="key">{this.state.base_url}</h1>
             </div>
         </div>
