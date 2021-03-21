@@ -9,16 +9,13 @@ export default class Upload extends Component {
         };
     }
 
-    async post_get_Handler(file, count) {
-            console.log("name: " + file.name)
-            console.log("type:" + file.type)
-        
+    async post_get_Handler(file, count, password) {
             // SEND GET
-            console.log(this.props.user.user.name);
-            console.log(count)
+
+            console.log(password)
             const user_name = this.props.user.user.name
             const response = await fetch(
-                `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${file.name}&filetype=${file.type}&user=${user_name}&dlcounter=${count}`);
+                `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${file.name}&filetype=${file.type}&user=${user_name}&dlcounter=${count}&password=${password}`);
 
             const data = await response.json();
             
@@ -30,6 +27,7 @@ export default class Upload extends Component {
             form.append('file', file)
             form.append('user', this.props.user.user.name)
             form.append('dlcounter', count)
+            form.append('password', password)
             
             //SEND POST
             const post_response = await fetch(data.URL.url, { method: 'POST', body: form });
@@ -42,10 +40,11 @@ export default class Upload extends Component {
     uploadFile = () => {
         console.log("upload file pressed...");
         const fileinput = document.getElementById('fileinput');
+        const password = document.getElementById('password').value;
         const count = document.getElementById('countInput').value;
         let file = fileinput.files[0];
         if(!(file === undefined)) {
-            this.post_get_Handler(file, count);
+            this.post_get_Handler(file, count, password);
         } else {
             this.setState({base_url: null})
         }
@@ -75,6 +74,8 @@ export default class Upload extends Component {
         let fileinput = document.getElementById("fileinput");
         let filelabel = document.getElementById("filelabel");
         if(fileinput !== undefined){
+            filelabel.innerHTML = `Chosen file: ${fileinput.files[0].name}`;
+        } else {
             filelabel.innerHTML = `Chosen file: ${fileinput.files[0].name}`;
         }
     }
@@ -112,6 +113,7 @@ export default class Upload extends Component {
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
                     <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
                 </form>
+                <input type="text" id="password" placeholder="Enter password" />
                 {url}
         </div>
         );
