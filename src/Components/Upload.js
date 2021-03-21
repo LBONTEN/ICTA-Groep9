@@ -24,7 +24,7 @@ export default class Upload extends Component {
             console.log(count)
             const user_name = this.props.user.user.name
             const response = await fetch(
-                `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${filename}&user=${user_name}&count=${count}`);
+                `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${filename}&user=${user_name}&dlcounter=${count}`);
 
             const data = await response.json();
             
@@ -35,7 +35,7 @@ export default class Upload extends Component {
             Object.keys(data.URL.fields).forEach(key => form.append(key, data.URL.fields[key]));
             form.append('file', file)
             form.append('user', this.props.user.user.name)
-            form.append('count', count)
+            form.append('dlcounter', count)
             
             //SEND POST
             const post_response = await fetch(data.URL.url, { method: 'POST', body: form });
@@ -61,6 +61,7 @@ export default class Upload extends Component {
 
     copyText() {  
         let element = document.getElementById("key");
+        document.execCommand("copy");
         element.addEventListener("copy", function(event) {
             event.preventDefault();
             if(event.clipboardData) {
@@ -68,7 +69,6 @@ export default class Upload extends Component {
             }
         });
 
-        document.execCommand("copy");
         let tooltip = document.getElementById("copyTooltip");
         tooltip.innerHTML = 'Copied to clipboard'
     }
@@ -81,7 +81,7 @@ export default class Upload extends Component {
     changeChosenFile() {
         let fileinput = document.getElementById("fileinput");
         let filelabel = document.getElementById("filelabel");
-        if(fileinput != undefined){
+        if(fileinput !== undefined){
             filelabel.innerHTML = `Chosen file: ${fileinput.files[0].name}`;
         }
     }
@@ -96,7 +96,7 @@ export default class Upload extends Component {
         if(this.state.base_url != null)
         {
         url = 
-        <div class="tooltip">
+        <div className="tooltip">
             <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
                 <span className="tooltipText" id="copyTooltip">Copy to clipboard</span>
                 <h1 id="key">{this.state.base_url}</h1>
