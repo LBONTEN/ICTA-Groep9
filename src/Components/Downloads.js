@@ -7,6 +7,7 @@ export default class Downloads extends Component {
         this.state = {
             presigned_download_url: null,
             checksum_match: false,
+            error: null
         };
     }
 
@@ -20,30 +21,38 @@ export default class Downloads extends Component {
         const clientside_checksum = md5(file_uuid)
         const serverside_checksum = data.checksum_value;
         if (clientside_checksum === serverside_checksum) this.setState({checksum_match: true})
-
         this.setState({ presigned_download_url: data.URL })
+        this.openDownloadWindow()
+
+        
     } 
 
-    render() {
-        let url;
-        if(this.state.presigned_download_url != null && this.state.checksum_match) {
-            url = 
-            <h1>
-                <a href={this.state.presigned_download_url}>Download</a>
-                <p>Checksums match!</p>
-            </h1>
+    openDownloadWindow (){
+        console.log("OpenDownloadWindow")
+        console.log(this.state.checksum_match)
+        try{
+        if (this.state.checksum_match === true && this.state.presigned_download_url != null){
+            console.log("yes")
+            window.open(this.state.presigned_download_url, '_blank')
         }
+        } catch(err)  {
+            this.setState({error: err})
+        }
+    }
+
+    render() {
         return (
         <div>
+            <h1>File Download</h1>
             <form>
                 <div className="field">
                     <label htmlFor="uuid" >UUID: </label>
-                    <input type="text" name="uuid" id="uuid-input" className="custom-input"/>
+                    <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4.png"/>
                 </div>
                 <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
                 <input type="reset" value="Reset the text" className="input-button hoverable" />
             </form>
-            {url}
+            {this.state.error}
         </div>
         );
     }

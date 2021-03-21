@@ -105,6 +105,7 @@ export default class Upload extends Component {
         }
         return(
             <div>
+                <h1>File Upload</h1>
                 <form>
                     <div className="field">
                         <label>File: </label>
@@ -112,8 +113,8 @@ export default class Upload extends Component {
                         <input type="file" name="file" id="fileinput" onChange={this.changeChosenFile}/>
                     </div>
                     <div className="field">
-                        <label htmlFor="count">Count:</label>
-                        <input type="text" name="count" className="custom-input" id="countInput"/>
+                        <label htmlFor="count">Max download count:</label>
+                        <input type="text" name="count" className="custom-input" id="countInput" placeholder="Default: 100"/>
                     </div>
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
                     <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
