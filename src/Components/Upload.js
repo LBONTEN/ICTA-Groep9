@@ -85,6 +85,10 @@ export default class Upload extends Component {
         filelabel.innerHTML = "Choose file";
     }
 
+    togglePasswordInput(){
+        this.setState({showPasswordInput: !this.state.showPasswordInput})
+    }
+
     render() {
         let url;
         if(this.state.base_url != null)
@@ -100,6 +104,7 @@ export default class Upload extends Component {
         }
         return(
             <div>
+                <div>
                 <h1>File Upload</h1>
                 <form>
                     <div className="field">
@@ -114,7 +119,9 @@ export default class Upload extends Component {
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
                     <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
                 </form>
-                <input type="text" id="password" placeholder="Enter password" />
+                <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
+                <input type="text" placeholder="password" id="password" className="input-button hoverable" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}/>
+                </div>
                 {url}
         </div>
         );

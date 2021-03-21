@@ -8,7 +8,8 @@ export default class Downloads extends Component {
             presigned_download_url: null,
             checksum: null,
             hash_password: null,
-            error: null
+            error: null,
+            showPasswordInput: false
         };
     }
 
@@ -17,7 +18,11 @@ export default class Downloads extends Component {
         var password = document.getElementById('password').value;
 
         password = md5(password)
-        const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}&password=${password}`);
+        const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}&password=${password}`)
+        .catch((err) => {
+            console.error(err)
+            
+        });
         
         const data = await response.json();
         const serverside_checksum = "Checksum: " + data.checksum_value;
@@ -36,6 +41,10 @@ export default class Downloads extends Component {
         }
     }
 
+    togglePasswordInput(){
+        this.setState({showPasswordInput: !this.state.showPasswordInput})
+    }
+
     render() {
         return (
         <div>
@@ -47,7 +56,8 @@ export default class Downloads extends Component {
                 </div>
                 <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
                 <input type="reset" value="Reset the text" className="input-button hoverable" />
-                <input type="text" placeholder="password" id="password"/>
+                <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
+                <input type="text" placeholder="password" id="password" className="input-button hoverable" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}/>
             </form>
             <p>{this.state.checksum}</p>
             <p>{this.state.error}</p>
