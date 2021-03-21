@@ -48,7 +48,6 @@ export default class Upload extends Component {
         } else {
             this.setState({base_url: null})
         }
-        
     }
 
     copyText() {  
