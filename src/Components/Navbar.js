@@ -7,7 +7,7 @@ const Navbar = () => {
     return(
       <nav>   
         <div className="brand">
-          <h1>Text App</h1>
+          <h1>ICTA-Groep9 App</h1>
         </div>
         <Link to={'/upload'}>
           <button className="hoverable">Upload</button>
