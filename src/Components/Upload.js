@@ -10,21 +10,15 @@ export default class Upload extends Component {
     }
 
     async post_get_Handler(file, count) {
-        var fullPath = document.getElementById('fileinput').value;
-        if (fullPath) {
-            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-            var filename = fullPath.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
-            }
+            console.log("name: " + file.name)
+            console.log("type:" + file.type)
         
             // SEND GET
             console.log(this.props.user.user.name);
-            console.log(filename)
             console.log(count)
             const user_name = this.props.user.user.name
             const response = await fetch(
-                `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${filename}&user=${user_name}&dlcounter=${count}`);
+                `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${file.name}&filetype=${file.type}&user=${user_name}&dlcounter=${count}`);
 
             const data = await response.json();
             
@@ -44,7 +38,6 @@ export default class Upload extends Component {
             }
             console.log(`File uploaded via presigned POST with key: ${data.URL.fields.key}`);
         }
-    }
 
     uploadFile = () => {
         console.log("upload file pressed...");

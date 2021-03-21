@@ -18,13 +18,12 @@ export default class Downloads extends Component {
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}`);
         
         const data = await response.json();
+        console.log(data)
         const clientside_checksum = md5(file_uuid)
         const serverside_checksum = data.checksum_value;
         if (clientside_checksum === serverside_checksum) this.setState({checksum_match: true})
         this.setState({ presigned_download_url: data.URL })
-        this.openDownloadWindow()
-
-        
+        this.openDownloadWindow()        
     } 
 
     openDownloadWindow (){
@@ -47,7 +46,7 @@ export default class Downloads extends Component {
             <form>
                 <div className="field">
                     <label htmlFor="uuid" >UUID: </label>
-                    <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4.png"/>
+                    <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4"/>
                 </div>
                 <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
                 <input type="reset" value="Reset the text" className="input-button hoverable" />
