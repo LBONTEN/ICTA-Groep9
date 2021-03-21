@@ -92,15 +92,12 @@ nav .login button {
 }
 
 #welcome {
-  align-self: center;
-  text-align: center;
-  padding: 10px 10px 0px 10px;
-  background-color: inherit;
-  color: inherit;
-  border-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-right: 1px solid lightgrey;
-  height: 80%;
-  width: 31rem;
+  height: 100%;
+  width: 35%;
 }
 
 /*Default form styling*/
