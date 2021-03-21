@@ -33,9 +33,9 @@ export default class Downloads extends Component {
 
     openDownloadWindow (){
         try{
-        if (this.state.presigned_download_url != null){
-            window.open(this.state.presigned_download_url, '_blank')
-        }
+            if (this.state.presigned_download_url != null){
+                window.open(this.state.presigned_download_url, '_blank')
+            }
         } catch(err)  {
             this.setState({error: err})
         }
@@ -46,21 +46,33 @@ export default class Downloads extends Component {
     }
 
     render() {
+        let passwordInput;
+        if(this.state.showPasswordInput) {
+            passwordInput =
+            <div className="field">
+                <label htmlFor="password">File password: </label>
+                <input type="text" placeholder="password" id="password" className="custom-input"/>
+            </div>
+        }
         return (
         <div>
             <h1>File Download</h1>
             <form>
-                <div className="field">
-                    <label htmlFor="uuid" >UUID: </label>
-                    <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4"/>
+                <div className="row">
+                    <div className="field">
+                        <label htmlFor="uuid" >UUID: </label>
+                        <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4"/>
+                    </div>
+                    {passwordInput}
                 </div>
-                <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
-                <input type="reset" value="Reset the text" className="input-button hoverable" />
-                <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
-                <input type="text" placeholder="password" id="password" className="input-button hoverable" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}/>
+                <div className="form-buttons">
+                    <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
+                    <input type="reset" value="Reset the text" className="input-button hoverable" />
+                    <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
+                </div>
             </form>
-            <p>{this.state.checksum}</p>
-            <p>{this.state.error}</p>
+            <p id="checksum" style={{visibility: this.state.checksum == null ? 'hidden' : 'visible'}}>{this.state.checksum}</p>
+            <p id="error" style={{visibility: this.state.error == null ? 'hidden' : 'visible'}}>{this.state.error}</p>
         </div>
         );
     }

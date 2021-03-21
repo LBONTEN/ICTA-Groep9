@@ -6,6 +6,7 @@ export default class Upload extends Component {
         this.state= {
             base_url: null,
             user: props.user,
+            showPasswordInput: false,
         };
     }
 
@@ -66,7 +67,7 @@ export default class Upload extends Component {
 
     changeToolTip() {
         let tooltip = document.getElementById("copyTooltip");
-        tooltip.innerHTML = "Copy to clipboard";
+        tooltip.innerHTML = "Copy link to clipboard";
     }
 
     changeChosenFile() {
@@ -95,33 +96,44 @@ export default class Upload extends Component {
         url = 
         <div className="tooltip">
             <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
-                <span className="tooltipText" id="copyTooltip">Copy to clipboard</span>
+                <span className="tooltipText" id="copyTooltip">Copy link to clipboard</span>
                 <h1>Make sure to copy this link!</h1>
                 <h1 id="key">{this.state.base_url}</h1>
             </div>
         </div>
         }
+
+        let passwordInput;
+        if(this.state.showPasswordInput) {
+            passwordInput = 
+            <div className="field">
+                <label htmlFor="password">File password: </label>
+                <input type="text" placeholder="Password: " id="password" className="custom-input"/>   
+            </div>
+        }
         return(
-            <div>
-                <div>
-                <h1>File Upload</h1>
-                <form>
-                    <div className="field">
-                        <label>File: </label>
-                        <label className="custom-input file-input input-button hoverable" htmlFor="fileinput" id="filelabel">Choose file</label>
-                        <input type="file" name="file" id="fileinput" onChange={this.changeChosenFile}/>
-                    </div>
+        <div>
+            <h1>File Upload</h1>
+            <form>
+                <div className="field">
+                    <label>File: </label>
+                    <label className="custom-input file-input input-button hoverable" htmlFor="fileinput" id="filelabel">Choose file</label>
+                    <input type="file" name="file" id="fileinput" onChange={this.changeChosenFile}/>
+                </div>
+                <div className="row">
                     <div className="field">
                         <label htmlFor="count">Max download count:</label>
                         <input type="text" name="count" className="custom-input" id="countInput" placeholder="Default: 100"/>
                     </div>
+                    {passwordInput}
+                </div>
+                <div className="form-buttons">
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
                     <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
-                </form>
-                <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
-                <input type="text" placeholder="password" id="password" className="input-button hoverable" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}/>
+                    <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
                 </div>
-                {url}
+            </form>
+            {url}
         </div>
         );
     }
