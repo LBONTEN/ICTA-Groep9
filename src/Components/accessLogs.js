@@ -31,7 +31,7 @@ export default class Logs extends Component
     filterUser() {
         const filterUser = document.getElementById("filterUser").value
         if(filterUser !== "") {
-            const filtered = this.state.logs.filter(logs => fuzzysearch(filterUser, logs.user))
+            const filtered = this.state.logs.filter(logs => fuzzysearch(filterUser, logs.username))
 
             console.log("filtered: ", filtered)
             this.setState({ filteredLogs: filtered })
@@ -44,7 +44,7 @@ export default class Logs extends Component
     {
         return(
             this.state.filteredLogs.map((log) => {
-                return <LogFile filename={log.filename} user={log.user} date={log.date} key={nanoid()}/>
+                return <LogFile filename={log.filename} user={log.username} date={log.date} key={nanoid()}/>
             })
         )
     }   
