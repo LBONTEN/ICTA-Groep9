@@ -26,14 +26,18 @@ export default class Logs extends Component
         this.setState({filteredLogs: this.state.logs})
     }
 
-    filterUser() {
-        const filterUser = document.getElementById("filterUser").value
-        if(filterUser !== "") {
-            const filtered = this.state.logs.filter(logs => fuzzysearch(filterUser, logs.username))
+    filterUser(user) {
+        if(user !== "") {
+            const filtered = this.state.logs.filter(logs => fuzzysearch(user, logs.username))
             this.setState({ filteredLogs: filtered })
         } else {
             this.setState({ filteredLogs : this.state.logs })
         }
+    }
+
+    filterUserEmpty() {
+        const filteredUser = document.getElementById("filterUser").value
+        this.filterUser(filteredUser);
     }
 
     renderLogs = () => 
@@ -51,14 +55,12 @@ export default class Logs extends Component
             <div>
                 <h1>Log files</h1>
                 <form>
-                    <div className="row">
-                        <div className="field">
-                            <input type="text" placeholder="Filter on username" className="custom-input" id="filterUser" onChange={() => this.filterUser()}/>
-                        </div>
-                        <div className="form-buttons">
-                            <input type="reset" value="Reset the file" className="input-button hoverable"/>
-                        </div> 
+                    <div className="field">
+                        <input type="text" placeholder="Filter on username" className="custom-input" id="filterUser" onChange={() => this.filterUserEmpty()}/>
                     </div>
+                    <div>
+                        <input type="reset" value="Reset the logs" className="input-button hoverable" onClick={() => this.filterUser("")}/>
+                    </div> 
                 </form>
                 <div className="logs-list">
                     <this.renderLogs/>

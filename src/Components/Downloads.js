@@ -62,7 +62,7 @@ export default class Downloads extends Component {
                         <input type="text" placeholder="password" id="password" className="custom-input"/>
                     </div>
                 </div>
-                <div className="form-buttons">
+                <div>
                     <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
                     <input type="reset" value="Reset the text" className="input-button hoverable" />
                     <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>

@@ -119,7 +119,7 @@ export default class Upload extends Component {
                         <input type="text" placeholder="Password: " id="password" className="custom-input"/>   
                     </div>
                 </div>
-                <div className="form-buttons">
+                <div>
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
                     <input type="reset" value="Reset the file" className="input-button hoverable" onClick={this.resetFile} />
                     <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
