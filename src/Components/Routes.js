@@ -8,7 +8,7 @@ const Routes = (user) => {
       <main>
         <Switch>
           <Route exact path="/upload" component={() => <Upload user={user} />}></Route>
-          <Route exact path="/download" component={Downloads}></Route>
+          <Route exact path="/download" component={() => <Downloads user={user} />}></Route>
           <Route path="/*" component={Downloads}></Route>
         </Switch>
       </main>
