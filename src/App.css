@@ -225,7 +225,8 @@ input[type="text"] {
 
 .card {
   padding: 1rem;
-  width: 24rem;
+  flex-grow: 4;
+  max-width: 26.6rem;
   margin-top: 1rem;
   margin-right: 1rem;
   border: 1px solid lightgray;
