@@ -1,40 +1,45 @@
 import React, {Component} from 'react';
+import LogFile from './LogFile';
+import { nanoid } from 'nanoid';
 
 export default class Logs extends Component
 {
     constructor(props) {
     super(props);
     this.state = {
+            logs: []
         };
+    }
+
+    componentDidMount() {
+        this.getAccessLogs()
     }
 
     async getAccessLogs()
     {
-        const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/accesslogs?`,
-        { method:'GET'});
-        console.log (response.body)
-        this.writeAccessLogs(response.json)
+        const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/accesslogs`);
+        const data = await response.json()
+        console.log(JSON.parse(data.items))
+        this.writeAccessLogs(JSON.parse(data.items))
     }
 
     writeAccessLogs(data)
     {
+        this.setState({logs: data})
         console.log(data)
     }
 
-    render()
-    {
-        return (
-            <div>
-                <h1>Access Logs</h1>
-                <div className="form-buttons">
-                     <input type="button" className="input-button hoverable" onClick={() => this.getAccessLogs()} value="Show Access Logs"/>
-                </div>
-
-                <div id="logsContainer">
-
-                </div>
+    render() {
+        return(
+            <div className="logs-list">
+                {
+                    this.state.logs.map((log, index) => {
+                        return <LogFile lognr={index} filename={log.filename} user={log.user} date={log.date} key={nanoid()}/>
+                    })
+                }
             </div>
-            );
+        )
+
     }
 
 

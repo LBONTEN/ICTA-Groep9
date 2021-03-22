@@ -217,3 +217,29 @@ input[type="text"] {
   visibility: visible;
   opacity: 1;
 }
+
+.logs-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  padding: 1rem;
+  width: 18rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  color: white;
+}
+
+p {
+  margin: 0.2rem;
+}
