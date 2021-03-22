@@ -12,8 +12,6 @@ export default class Upload extends Component {
 
     async post_get_Handler(file, count, password) {
             // SEND GET
-
-            console.log(password)
             const user_name = this.props.user.user.name
             const response = await fetch(
                 `https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/upload?file=${file.name}&filetype=${file.type}&user=${user_name}&dlcounter=${count}&password=${password}`);
@@ -39,7 +37,6 @@ export default class Upload extends Component {
         }
 
     uploadFile = () => {
-        console.log("upload file pressed...");
         const fileinput = document.getElementById('fileinput');
         const password = document.getElementById('password').value;
         const count = document.getElementById('countInput').value;

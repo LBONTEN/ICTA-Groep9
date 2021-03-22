@@ -21,8 +21,6 @@ export default class Logs extends Component
     async getAccessLogs () {
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/accesslogs`);
         const data = await response.json()
-        console.log(JSON.parse(data.items))
-
         const datajson = JSON.parse(data.items)
         this.setState({logs: datajson})
         this.setState({filteredLogs: this.state.logs})
@@ -32,8 +30,6 @@ export default class Logs extends Component
         const filterUser = document.getElementById("filterUser").value
         if(filterUser !== "") {
             const filtered = this.state.logs.filter(logs => fuzzysearch(filterUser, logs.username))
-
-            console.log("filtered: ", filtered)
             this.setState({ filteredLogs: filtered })
         } else {
             this.setState({ filteredLogs : this.state.logs })

@@ -15,7 +15,6 @@ export default class Downloads extends Component {
     }
 
     async postAccessLog(file) {
-        console.log(this.props.user)
         await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/accesslogs?filename=${file}&user=${this.props.user.user.name}`,
         { method:'POST'});
     }
@@ -23,8 +22,6 @@ export default class Downloads extends Component {
     async generatePresignedURL() {
         var file_uuid = document.getElementById('uuid-input').value;
         var password = document.getElementById('password').value;
-        console.log(password)
-
         password = md5(password)
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}&password=${password}`)
         
