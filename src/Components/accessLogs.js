@@ -35,8 +35,8 @@ export default class Logs extends Component
                 <h1>Log files</h1>
                 <div className="logs-list">
                 {
-                    this.state.logs.map((log, index) => {
-                        return <LogFile lognr={index} filename={log.filename} user={log.user} date={log.date} key={nanoid()}/>
+                    this.state.logs.map((log) => {
+                        return <LogFile filename={log.filename} user={log.user} date={log.date} key={nanoid()}/>
                     })
                 }
                 </div>
