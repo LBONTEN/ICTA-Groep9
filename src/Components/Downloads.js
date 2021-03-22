@@ -15,6 +15,7 @@ export default class Downloads extends Component {
     }
 
     async postAccessLog(file) {
+        console.log(this.props.user)
         await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/accesslogs?filename=${file}&user=${this.props.user.user.name}`,
         { method:'POST'});
     }
@@ -25,17 +26,13 @@ export default class Downloads extends Component {
 
         password = md5(password)
         const response = await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/download?file=${file_uuid}&password=${password}`)
-        .catch((err) => {
-            console.error(err)
-            
-        });
         
         const data = await response.json();
         const serverside_checksum = "Checksum: " + data.checksum_value;
         this.setState({checksum: serverside_checksum})
         this.setState({ presigned_download_url: data.URL })
         this.openDownloadWindow()
-        this.postAccessLog(file_uuid)     
+        this.postAccessLog(file_uuid)
     }   
 
     openDownloadWindow (){
@@ -53,14 +50,7 @@ export default class Downloads extends Component {
     }
 
     render() {
-        let passwordInput;
-        if(this.state.showPasswordInput) {
-            passwordInput =
-            <div className="field">
-                <label htmlFor="password">File password: </label>
-                <input type="text" placeholder="password" id="password" className="custom-input"/>
-            </div>
-        }
+
         return (
         <div>
             <h1>File Download</h1>
@@ -70,13 +60,15 @@ export default class Downloads extends Component {
                         <label htmlFor="uuid" >UUID: </label>
                         <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4"/>
                     </div>
-                    {passwordInput}
+
                 </div>
                 <div className="form-buttons">
                     <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
                     <input type="reset" value="Reset the text" className="input-button hoverable" />
                     <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
                 </div>
+
+                    <input type="text" placeholder="password" id="password" className="input-button hoverable" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}/>             
             </form>
             <p id="checksum" style={{visibility: this.state.checksum == null ? 'hidden' : 'visible'}}>{this.state.checksum}</p>
             <p id="error" style={{visibility: this.state.error == null ? 'hidden' : 'visible'}}>{this.state.error}</p>

@@ -3,13 +3,12 @@ import Downloads from './Downloads';
 import Upload from './Upload';
 
 const Routes = (user) => {
-  console.log(user)
     return (
       <main>
         <Switch>
           <Route exact path="/upload" component={() => <Upload user={user} />}></Route>
           <Route exact path="/download" component={() => <Downloads user={user} />}></Route>
-          <Route path="/*" component={Downloads}></Route>
+          <Route path="/*" component={() => <Downloads user={user} />}></Route>
         </Switch>
       </main>
     )
