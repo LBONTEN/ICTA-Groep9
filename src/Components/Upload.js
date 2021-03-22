@@ -93,24 +93,16 @@ export default class Upload extends Component {
         let url;
         if(this.state.base_url != null)
         {
-        url = 
-        <div className="tooltip">
-            <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
-                <span className="tooltipText" id="copyTooltip">Copy link to clipboard</span>
-                <h1>Make sure to copy this link!</h1>
-                <h1 id="key">{this.state.base_url}</h1>
+            url = 
+            <div className="tooltip">
+                <div onClick={this.copyText} onMouseOut={this.changeToolTip}>
+                    <span className="tooltipText" id="copyTooltip">Copy link to clipboard</span>
+                    <h1>Make sure to copy this link!</h1>
+                    <h1 id="key">{this.state.base_url}</h1>
+                </div>
             </div>
-        </div>
         }
 
-        let passwordInput;
-        if(this.state.showPasswordInput) {
-            passwordInput = 
-            <div className="field">
-                <label htmlFor="password">File password: </label>
-                <input type="text" placeholder="Password: " id="password" className="custom-input"/>   
-            </div>
-        }
         return(
         <div>
             <h1>File Upload</h1>
@@ -125,7 +117,10 @@ export default class Upload extends Component {
                         <label htmlFor="count">Max download count:</label>
                         <input type="text" name="count" className="custom-input" id="countInput" placeholder="Default: 100"/>
                     </div>
-                    {passwordInput}
+                    <div className="field" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden'}}>
+                        <label htmlFor="password">File password: </label>
+                        <input type="text" placeholder="Password: " id="password" className="custom-input"/>   
+                    </div>
                 </div>
                 <div className="form-buttons">
                     <input type="button" value="Upload" className="input-button hoverable" onClick={this.uploadFile} />
