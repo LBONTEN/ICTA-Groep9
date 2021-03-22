@@ -60,14 +60,16 @@ export default class Downloads extends Component {
                         <label htmlFor="uuid" >UUID: </label>
                         <input type="text" name="uuid" id="uuid-input" className="custom-input" placeholder="example: 3533827f-eeb6-4f96-96ca-d3d98b8a5bd4"/>
                     </div>
+                    <div className="field" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}>
+                        <label htmlFor="password" >File password: </label>
+                        <input type="text" placeholder="password" id="password" className="custom-input"/>
+                    </div>
                 </div>
                 <div className="form-buttons">
                     <input type="button" value="Download" className="input-button hoverable"  onClick={async() => {await this.generatePresignedURL();}} />
                     <input type="reset" value="Reset the text" className="input-button hoverable" />
                     <input type="button" className="input-button hoverable" onClick={() => this.togglePasswordInput()} value="Show password input"/>
                 </div>
-
-                    <input type="text" placeholder="password" id="password" className="input-button hoverable" style={{visibility: this.state.showPasswordInput ? 'visible' : 'hidden' }}/>             
             </form>
             <p id="checksum" style={{visibility: this.state.checksum == null ? 'hidden' : 'visible'}}>{this.state.checksum}</p>
             <p id="error" style={{visibility: this.state.error == null ? 'hidden' : 'visible'}}>{this.state.error}</p>
