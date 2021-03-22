@@ -100,16 +100,41 @@ nav .login button {
   width: 35%;
 }
 
+#key {
+  border: darkcyan solid 3px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 1rem;
+  background-color: var(--bg-secondary);
+}
+
+#checksum {
+  width: 500px;
+  border-bottom: darkgreen dashed 3px;
+}
+
+#error {
+  width: 500px;
+  border-bottom: darkred dashed 3px;
+}
+
 /*Default form styling*/
 form {
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
 .field {
-  width: 100%;
-  margin: 0 auto;
+  float: left;
+  width: 500px;
   position: relative;
-  margin: 4rem auto 1rem;
+  margin: 4rem auto 1rem 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 label {
