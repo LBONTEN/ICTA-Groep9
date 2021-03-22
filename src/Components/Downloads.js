@@ -8,8 +8,14 @@ export default class Downloads extends Component {
             presigned_download_url: null,
             checksum: null,
             hash_password: null,
+            user: props.user,
             error: null
         };
+    }
+
+    async postAccessLog(file) {
+        await fetch(`https://hek46ulrnc.execute-api.us-east-1.amazonaws.com/prod/accesslogs?filename=${file}&user=${this.props.user.user.name}`,
+        { method:'POST'});
     }
 
     async generatePresignedURL() {
@@ -23,7 +29,8 @@ export default class Downloads extends Component {
         const serverside_checksum = "Checksum: " + data.checksum_value;
         this.setState({checksum: serverside_checksum})
         this.setState({ presigned_download_url: data.URL })
-        this.openDownloadWindow()     
+        this.openDownloadWindow()
+        this.postAccessLog(file_uuid)     
     }   
 
     openDownloadWindow (){
