@@ -15,6 +15,9 @@ const Navbar = () => {
         <Link to={'/download'}>
           <button className="hoverable">Download</button>
         </Link>
+        <Link to={'/logs'}>
+          <button className="hoverable">Logs</button>
+        </Link>
         <div id="welcome">
           <p>Welcome {user.name}</p>
         </div>
